@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<style>
+    * {
+        color: black;
+    }
+</style>
+
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <title>Modal teste</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body style="color: white">
+    <button type="button" onclick="renderModal(123)">Teste</button>
+    <script>
+      function renderModal(id) {
+        var modalContainer = $("<div>", {
+          class: "modal fade",
+          id: "modal-" + id,
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "modal-label-" + id,
+          "aria-hidden": "true",
+        });
+        var modalDialog = $("<div>", {
+          class: "modal-dialog",
+          role: "document",
+        });
+
+        var modalContent = $("<div>", {
+          class: "modal-content",
+        });
+
+        var modalHeader = $("<div>", {
+          class: "modal-header",
+        });
+
+        var modalTitle = $("<h5>", {
+          class: "modal-title",
+          id: "modal-label-" + id,
+          text: "Modal Title",
+        });
+
+        var modalCloseButton = $("<button>", {
+          type: "button",
+          class: "close",
+          "data-dismiss": "modal",
+          "aria-label": "Close",
+        });
+
+        var modalCloseSpan = $("<span>", {
+          "aria-hidden": "true",
+          html: "&times;",
+        });
+
+        modalCloseButton.append(modalCloseSpan);
+        modalHeader.append(modalTitle, modalCloseButton);
+
+        var modalBody = $("<div>", {
+          class: "modal-body",
+          text: "Modal Body",
+        });
+
+        var modalFooter = $("<div>", {
+          class: "modal-footer",
+        });
+
+        var modalFooterButton = $("<button>", {
+          type: "button",
+          class: "btn btn-secondary",
+          "data-dismiss": "modal",
+          text: "Close",
+        });
+
+        modalFooter.append(modalFooterButton);
+        modalContent.append(modalHeader, modalBody, modalFooter);
+        modalDialog.append(modalContent);
+        modalContainer.append(modalDialog);
+
+        $("body").append(modalContainer);
+
+        $("#modal-" + id).modal("show");
+
+      }
+    </script>
+  </body>
+</html>
